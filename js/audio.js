@@ -82,24 +82,14 @@ export function playAIVoiceGreeting(isAutomatic = false) {
   const utterance = new SpeechSynthesisUtterance(AI_GREETING_SCRIPT);
   currentUtterance = utterance;
 
-  // Pick suitable English voice (prefer calm, deeper synthetic voices)
-  const voices = window.speechSynthesis.getVoices();
-  const preferredVoice = voices.find(v => 
-    v.lang.startsWith('en') && (
-      v.name.includes('Natural') || 
-      v.name.includes('David') || 
-      v.name.includes('Mark') || 
-      v.name.includes('Google US English') ||
-      v.name.includes('Male')
-    )
-  ) || voices.find(v => v.lang.startsWith('en')) || voices[0];
+  const preferredVoice = getPreferredEnglishVoice();
 
   if (preferredVoice) {
     utterance.voice = preferredVoice;
   }
 
   // Deep, futuristic synthetic delivery
-  utterance.pitch = 0.82;
+  utterance.pitch = 0.68;
   utterance.rate = 0.92;
   let hasStarted = false;
   let autoplayFallbackTimer = 0;
@@ -267,18 +257,22 @@ function hideVoicePrompt() {
 
 function createRobotUtterance(text, rate, pitch) {
   const utterance = new SpeechSynthesisUtterance(text);
-  const voices = window.speechSynthesis.getVoices();
-  const voice = voices.find(candidate =>
-    candidate.lang.startsWith('en') &&
-    (candidate.name.includes('Natural') || candidate.name.includes('David') ||
-      candidate.name.includes('Mark') || candidate.name.includes('Google US English') ||
-      candidate.name.includes('Male'))
-  ) || voices.find(candidate => candidate.lang.startsWith('en')) || voices[0];
+  const voice = getPreferredEnglishVoice();
 
   if (voice) utterance.voice = voice;
   utterance.rate = rate;
-  utterance.pitch = pitch;
+  utterance.pitch = Math.min(pitch, 0.68);
   return utterance;
+}
+
+function getPreferredEnglishVoice() {
+  const voices = window.speechSynthesis.getVoices();
+  const englishVoices = voices.filter(voice => voice.lang.startsWith('en'));
+  const maleVoicePattern = /\b(male|david|mark|guy|daniel|james|fred|ralph|tom|peter)\b/i;
+
+  return englishVoices.find(voice => maleVoicePattern.test(voice.name))
+    || englishVoices[0]
+    || voices[0];
 }
 
 function startWaveAnimation() {
