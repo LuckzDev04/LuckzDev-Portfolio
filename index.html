@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore the portfolio of Lucky Arlie T. Evangelista, known as LuckzDev — a Computer Engineering student interested in frontend development, UI/UX design, embedded systems, and computer networking.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#070A12">
+  <meta name="author" content="Lucky Arlie T. Evangelista">
+  <link rel="canonical" href="https://luckzdev04.github.io/LuckzDev-Portfolio/">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="LuckzDev | Computer Engineering Student & Creative Developer">
+  <meta property="og:description" content="Turning Real-World Problems Into Intelligent Digital Solutions. Explore projects in Web, Embedded Systems, Mobile UI, and Cisco Networking.">
+  <meta property="og:url" content="https://luckzdev04.github.io/LuckzDev-Portfolio/">
+  <meta property="og:image" content="https://luckzdev04.github.io/LuckzDev-Portfolio/assets/images/luckzdev-portrait.jpg">
+
+  <!-- Search and social previews -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LuckzDev | Computer Engineering Student & Creative Developer">
+  <meta name="twitter:description" content="Explore Lucky Arlie T. Evangelista's projects in web development, embedded systems, mobile UI, and Cisco networking.">
+  <meta name="twitter:image" content="https://luckzdev04.github.io/LuckzDev-Portfolio/assets/images/luckzdev-portrait.jpg">
+
+  <title>LuckzDev | Computer Engineering Student & Creative Developer</title>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Lucky Arlie T. Evangelista",
+      "alternateName": "LuckzDev",
+      "url": "https://luckzdev04.github.io/LuckzDev-Portfolio/",
+      "jobTitle": "Computer Engineering Student",
+      "sameAs": [
+        "https://github.com/LuckzDev04",
+        "https://www.linkedin.com/in/lucky-arlie-evangelista-511b0b440/"
+      ]
+    }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+
+  <!-- Google Fonts: Oxanium, Space Grotesk, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Oxanium:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- High-Performance Canvas Atmosphere (Constellation & Dust) -->
+  <canvas id="atmosphere-canvas" aria-hidden="true"></canvas>
+  <audio id="ambient-theme" src="assets/audio/hud-ambient-theme.mp3" autoplay loop preload="auto" aria-hidden="true"></audio>
+  <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Cyber Scanlines & Matrix Grid Overlay -->
+  <div class="cyber-scanlines" aria-hidden="true"></div>
+
+  <!-- Screen Warp Ripple for Rocket Launch -->
+  <div class="screen-warp-ripple" aria-hidden="true"></div>
+
+  <!-- AI Voice Subtitle & Waveform Notification Bar -->
+  <div id="ai-voice-subtitles" class="ai-voice-subtitle-bar hidden" role="status" aria-live="polite">
+    <div class="ai-audio-wave">
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+    </div>
+    <div class="ai-voice-subtitle-copy">
+      <span class="ai-voice-subtitle-brand">LUCKZDEV AI</span>
+      <span class="subtitle-content">Transmitting voice synthesis...</span>
+    </div>
+  </div>
+  <div id="ai-voice-prompt" class="ai-voice-prompt hidden" role="status" aria-live="polite">
+    <span class="ai-voice-prompt-indicator" aria-hidden="true"></span>
+    <span>CLICK OR TAP ANYWHERE TO HEAR LUCKZDEV AI</span>
+  </div>
+
+  <!-- ==========================================================================
+       SCENE A & B: CINEMATIC SYSTEM BOOT & ANONYMOUS AVATAR OVERLAY
+       ========================================================================== -->
+  <div id="system-boot-overlay">
+    <div class="boot-container">
+      <div class="boot-corner-bracket boot-tl"></div>
+      <div class="boot-corner-bracket boot-tr"></div>
+      <div class="boot-corner-bracket boot-bl"></div>
+      <div class="boot-corner-bracket boot-br"></div>
+
+      <div class="boot-header">
+        <div class="boot-terminal-title">LUCKZDEV PORTFOLIO INITIALIZATION</div>
+        <div class="font-mono" style="font-size: 0.7rem; color: #64748B;">SECURE VERSION 2.4</div>
+      </div>
+
+      <!-- Anonymous Hologram Silhouette Avatar -->
+      <div class="boot-avatar-box">
+        <div class="hologram-avatar-frame">
+          <svg class="hologram-avatar-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" stroke="#00E5FF" stroke-width="1" stroke-dasharray="4 2"/>
+            <!-- Stylized Anonymous Programmer Silhouette -->
+            <path d="M50 20 C42 20 36 26 36 34 C36 42 42 48 50 48 C58 48 64 42 64 34 C64 26 58 20 50 20 Z" fill="#00E5FF" opacity="0.6"/>
+            <!-- Hood/Silhouette Shoulders -->
+            <path d="M22 80 C24 60 36 54 50 54 C64 54 76 60 78 80 Z" fill="#8B5CF6" opacity="0.7"/>
+            <!-- Glowing Cyber Visor Line -->
+            <line x1="40" y1="33" x2="60" y2="33" stroke="#00E5FF" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          <div class="hologram-scan-bar"></div>
+        </div>
+        <div class="font-mono" style="font-size: 0.68rem; color: #00E5FF; margin-top: 8px; letter-spacing: 1.5px;">
+          Identity verification in progress
+        </div>
+      </div>
+
+      <!-- Terminal Output Typewriter -->
+      <div id="boot-terminal-output" class="boot-terminal-output"></div>
+
+      <!-- Progress Indicator -->
+      <div class="boot-progress-wrap">
+        <div class="boot-progress-info">
+          <span>ENVIRONMENT SYNCHRONIZATION</span>
+          <span id="boot-progress-percent">0%</span>
+        </div>
+        <div class="boot-progress-bar">
+          <div id="boot-progress-fill" class="boot-progress-fill"></div>
+        </div>
+      </div>
+
+      <!-- Boot Controls -->
+      <div class="boot-actions">
+        <button id="btn-boot-voice" class="btn-cyber btn-outline-violet btn-sm">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          ENABLE SOUND &amp; REPLAY INITIALIZING
+        </button>
+        <button id="btn-skip-boot" class="btn-cyber btn-primary btn-sm">
+          SKIP INTRO &rarr;
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       TOP NAVIGATION: FIXED GLASSMORPHISM NEXUS CONTROL PANEL
+       ========================================================================== -->
+  <header id="nexus-nav" class="nexus-nav">
+    <div class="nav-container">
+      <a href="#home" class="nav-brand" aria-label="LuckzDev Home">
+        <div class="nav-brand-logo">
+          <img src="assets/images/luckzdev-portrait.jpg" alt="" class="nav-brand-avatar">
+        </div>
+        <div class="nav-brand-text">
+          <div class="nav-brand-title">LUCKZ<span>DEV</span></div>
+          <div class="nav-brand-subtitle">NEXUS PROTOCOL</div>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+          <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+          <li class="nav-item"><a href="#networking" class="nav-link">Networking</a></li>
+          <li class="nav-item"><a href="#certificates" class="nav-link">Certificates</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Navigation Controls -->
+      <div class="nav-controls">
+        <div class="nav-clock" title="Visitor Local System Time">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <span id="nexus-system-clock">00:00:00 UTC+8</span>
+        </div>
+
+        <div class="nav-status">
+          <span class="status-beacon"></span>
+          <span>ONLINE</span>
+        </div>
+
+        <button id="btn-nav-sound" class="btn-icon-nav" aria-label="Mute HUD music and cyber sound effects" aria-pressed="true" title="HUD music and cyber sound effects are on. If playback is blocked, tap anywhere to start.">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00E5FF" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+        </button>
+
+        <button id="btn-nav-audio" class="btn-icon-nav" aria-label="Play LUCKZDEV AI Greeting" title="Play LUCKZDEV AI Greeting" aria-pressed="false">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+        </button>
+
+        <!-- Mobile Drawer Toggle -->
+        <button id="btn-mobile-menu" class="btn-icon-nav mobile-menu-btn" aria-label="Toggle mobile menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-drawer" class="mobile-drawer" aria-label="Mobile Navigation">
+      <ul class="mobile-drawer-links">
+        <li><a href="#home" class="mobile-drawer-link">01. Home &rarr;</a></li>
+        <li><a href="#about" class="mobile-drawer-link">02. About &rarr;</a></li>
+        <li><a href="#projects" class="mobile-drawer-link">03. Projects &rarr;</a></li>
+        <li><a href="#skills" class="mobile-drawer-link">04. Skills &rarr;</a></li>
+        <li><a href="#networking" class="mobile-drawer-link">05. Cisco Networking &rarr;</a></li>
+        <li><a href="#certificates" class="mobile-drawer-link">06. Certificates &rarr;</a></li>
+        <li><a href="#contact" class="mobile-drawer-link">07. Contact &rarr;</a></li>
+      </ul>
+      <div style="margin-top: auto; border-top: 1px solid var(--border-subtle); padding-top: 16px;">
+        <button onclick="window.replaySystemBoot()" class="btn-cyber btn-outline-violet btn-sm" style="width: 100%;">
+          REPLAY SYSTEM BOOT
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       HERO SECTION: THE DEVELOPER IDENTITY
+       ========================================================================== -->
+  <main id="main-content">
+    <section id="home" class="hero-section">
+      <div class="nexus-container">
+        <div class="hero-grid">
+          <!-- Left: Identity Information -->
+          <div class="hero-content">
+            <div class="hero-meta-badges">
+              <span class="meta-badge">PROFILE: LUCKZDEV</span>
+              <span class="meta-badge">ANTIPOLO, PHILIPPINES</span>
+              <span class="meta-badge">COMPUTER ENGINEERING STUDENT</span>
+            </div>
+
+            <div class="hero-name-label">LUCKY ARLIE T. EVANGELISTA</div>
+            <h1 class="hero-title">
+              LUCKZ<span class="hero-title-highlight">DEV</span>
+            </h1>
+
+            <!-- Animated Rotating Role Bar -->
+            <div class="hero-roles-bar">
+              <span style="color: #64748B;">&gt;</span>
+              <span id="hero-rotating-role">Computer Engineering Student</span>
+              <span class="role-cursor"></span>
+            </div>
+
+            <div class="hero-tagline">
+              "Turning Real-World Problems Into Intelligent Digital Solutions."
+            </div>
+
+            <p class="hero-bio">
+              Computer Engineering student at ICCT Colleges passionate about software development, UI/UX design, embedded systems, networking, and emerging AI technologies. Creating thoughtful digital experiences where software and hardware unite to solve practical human challenges.
+            </p>
+
+            <div class="hero-actions">
+              <!-- Signature Rocket CTA Button -->
+              <a href="#projects" id="btn-hero-explore" class="btn-cyber btn-primary btn-explore">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                  <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                  <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                  <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+                </svg>
+                INITIATE EXPLORATION
+              </a>
+
+              <a href="#contact" id="btn-hero-contact" class="btn-cyber btn-secondary btn-contact">
+                INITIALIZE CONTACT
+              </a>
+            </div>
+
+            <!-- Social Links -->
+            <div class="hero-socials">
+              <span style="font-family: var(--font-mono); font-size: 0.72rem; color: #64748B; margin-right: 6px;">UPLINK:</span>
+              <a href="https://github.com/LuckzDev04" target="_blank" rel="noopener noreferrer" class="hero-social-link" title="GitHub Profile" aria-label="GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </a>
+              <a href="https://www.linkedin.com/in/lucky-arlie-evangelista-511b0b440/" target="_blank" rel="noopener noreferrer" class="hero-social-link" title="LinkedIn Profile" aria-label="LinkedIn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              </a>
+              <a href="https://www.facebook.com/lucky.evangelista.505" target="_blank" rel="noopener noreferrer" class="hero-social-link" title="Facebook Profile" aria-label="Facebook">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+              </a>
+              <a href="https://www.instagram.com/m1ng_daewoon/" target="_blank" rel="noopener noreferrer" class="hero-social-link" title="Instagram Profile" aria-label="Instagram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              </a>
+              <a href="mailto:luckyevangelista04@gmail.com" class="hero-social-link" title="Send Email" aria-label="Email">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Real Formal Portrait inside Cyber Frame with Hacker Glitch Disguise Layer -->
+          <div class="hero-portrait-wrapper">
+            <div class="portrait-cyber-frame">
+              <div class="frame-corner frame-tl"></div>
+              <div class="frame-corner frame-tr"></div>
+              <div class="frame-corner frame-bl"></div>
+              <div class="frame-corner frame-br"></div>
+
+              <div class="portrait-image-container" id="portrait-image-container">
+                <!-- Actual uploaded formal portrait of Lucky Arlie T. Evangelista -->
+                <img src="assets/images/luckzdev-portrait.jpg" alt="Formal Portrait of Lucky Arlie T. Evangelista (LuckzDev)" class="portrait-img" id="hero-portrait-image">
+                <!-- Reference image used for the hacker disguise layer -->
+                <img src="assets/images/hacker-mask-avatar.jpg" alt="Hooded digital mask with glowing green circuitry" class="hacker-mask-img" id="hero-hacker-disguise">
+                <div class="portrait-scan-line"></div>
+              </div>
+
+              <div class="portrait-status-bar">
+                <div class="portrait-verified-tag">
+                  <span class="status-beacon"></span>
+                  <span id="portrait-status-label">IDENTITY: VERIFIED</span>
+                </div>
+                <div style="color: #00E5FF; font-family: var(--font-mono); font-size: 0.68rem;">ICCT | COMPUTER ENGINEERING</div>
+              </div>
+
+              <!-- Interactive Hacker Glitch Override Button -->
+              <button id="btn-toggle-hacker-glitch" class="btn-cyber btn-outline-violet btn-sm" style="width: 100%; margin-top: 10px; font-size: 0.68rem;" title="Trigger biometric hacker glitch">
+                [OVERRIDE: HACKER GLITCH PROTOCOL]
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ABOUT ME SECTION: THE MIND BEHIND THE CODE
+         ========================================================================== -->
+    <section id="about">
+      <div class="nexus-container">
+        <div class="section-header">
+          <div class="section-tag">THE MINDSET & CAPABILITIES</div>
+          <h2 class="section-title">Curiosity Is the Beginning of Every System.</h2>
+          <p class="section-subtitle">
+            Bridging hardware and software through hands-on engineering, creative problem-solving, and continuous learning.
+          </p>
+        </div>
+
+        <!-- 6 Core Engineering Pillars -->
+        <div id="about-pillars-grid" class="about-pillars-grid"></div>
+        <p class="carousel-hint mobile-carousel-hint" aria-hidden="true">SWIPE TO EXPLORE CORE SYSTEMS <span>→</span></p>
+
+        <!-- Visual Engineering Journey Workflow Diagram -->
+        <div class="workflow-section-wrap">
+          <div class="workflow-header">
+            <div class="workflow-title">SYSTEM ARCHITECTURE LIFECYCLE</div>
+            <div class="font-mono" style="font-size: 0.72rem; color: #8B5CF6;">LUCKZDEV ENGINEERING WORKFLOW</div>
+          </div>
+          <div id="workflow-steps-flex" class="workflow-steps-flex"></div>
+          <p class="carousel-hint mobile-carousel-hint" aria-hidden="true">SWIPE TO TRACE THE WORKFLOW <span>→</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         PROJECT SHOWCASE: ENGINEERING IN ACTION
+         ========================================================================== -->
+    <section id="projects">
+      <div class="nexus-container">
+        <div class="section-header">
+          <div class="section-tag">ENGINEERING IN ACTION</div>
+          <h2 class="section-title">Featured Academic Systems & Proposals</h2>
+          <p class="section-subtitle">
+            Student-built web, embedded, and mobile systems for real campus and community needs.
+          </p>
+        </div>
+
+        <!-- Filter Categories -->
+        <div class="projects-filter-bar">
+          <button class="filter-btn active" data-filter="all">ALL PROJECTS [4]</button>
+          <button class="filter-btn" data-filter="web">OOP / WEB APP</button>
+          <button class="filter-btn" data-filter="embedded">EMBEDDED & SENSORS</button>
+          <button class="filter-btn" data-filter="mobile">MOBILE PROPOSAL</button>
+          <button class="filter-btn" data-filter="capstone">CAPSTONE THESIS</button>
+        </div>
+
+        <!-- Dynamic Projects Grid -->
+        <div id="projects-grid" class="projects-grid"></div>
+        <p class="carousel-hint" aria-hidden="true">SWIPE TO EXPLORE PROJECTS <span>→</span></p>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         TECH STACK SECTION: THE DEVELOPER TOOLKIT
+         ========================================================================== -->
+    <section id="skills">
+      <div class="nexus-container">
+        <div class="section-header">
+          <div class="section-tag">THE DEVELOPER TOOLKIT</div>
+          <h2 class="section-title">Technical Competencies & Systems</h2>
+          <p class="section-subtitle">
+            Frontend, embedded, AI-assisted development, and Cisco networking tools in practice.
+          </p>
+        </div>
+
+        <div id="skills-categories-grid" class="skills-categories-grid"></div>
+        <p class="carousel-hint mobile-carousel-hint" aria-hidden="true">SWIPE TO SCAN SKILL DOMAINS <span>→</span></p>
+        <div id="skills-telemetry" class="skills-telemetry"></div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         CISCO NETWORKING: NETWORK ENGINEERING PATH
+         ========================================================================== -->
+    <section id="networking">
+      <div class="nexus-container">
+        <div class="section-header">
+          <div class="section-tag">NETWORK ENGINEERING PATH</div>
+          <h2 class="section-title">From Connected Systems to Intelligent Networks</h2>
+          <p class="section-subtitle">
+            Cisco 1–3, subnetting, VLAN design, routing, and hands-on Packet Tracer simulations.
+          </p>
+        </div>
+
+        <!-- Long-Term Goal Banner -->
+        <div style="background: rgba(0, 229, 255, 0.08); border: 1px solid var(--border-tech); border-radius: var(--radius-md); padding: 18px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 24px;">
+          <div>
+            <span style="font-family: var(--font-mono); font-size: 0.72rem; color: #8B5CF6; letter-spacing: 1px; display: block;">STRATEGIC ROADMAP</span>
+            <strong style="color: #00E5FF; font-size: 1.15rem; font-family: var(--font-display);">Future Goal: Network Engineer (Target: CCNA Certification)</strong>
+            <p style="font-size: 0.85rem; color: #94A3B8; margin-top: 4px;">Advancing foundational Cisco switching & routing knowledge toward enterprise infrastructure and network automation.</p>
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #39FF88; border: 1px solid #39FF88; padding: 6px 12px; border-radius: 4px;">
+            ACADEMIC CISCO 1-3 COMPLETED
+          </div>
+        </div>
+
+        <!-- Interactive Cisco Topology Simulation -->
+          <div class="network-sim-wrap">
+          <div class="network-sim-header">
+            <div>
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 4px;">
+                <h3 style="font-size: 1.15rem; color: #EAF2FF;">Interactive Cisco Topology Simulation</h3>
+                <span style="font-family: var(--font-mono); font-size: 0.7rem; color: #39FF88; background: rgba(57, 255, 136, 0.1); border: 1px solid #39FF88; padding: 2px 6px; border-radius: 2px;">PACKETS ROUTED: <span id="network-packets-count">124</span></span>
+              </div>
+              <p style="font-size: 0.82rem; color: #94A3B8;">Click any network node to inspect its Layer 2/3 characteristics, VLAN tagging, and routing concept.</p>
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <button onclick="window.simulatePacketPing()" class="btn-cyber btn-primary btn-sm" title="Simulate ICMP Echo Ping across subnets">
+                TRANSMIT PACKET
+              </button>
+              <button onclick="window.resetNetworkTopology()" class="btn-cyber btn-secondary btn-sm" title="Reset simulation state">
+                RESET TOPOLOGY
+              </button>
+            </div>
+          </div>
+
+          <div class="network-canvas-container">
+            <canvas id="network-topology-canvas"></canvas>
+          </div>
+
+          <div class="network-inspector-panel">
+            <div id="network-inspector-content">
+              Loading topology inspector telemetry...
+            </div>
+          </div>
+
+          <!-- Educational Tracer Terminal Log -->
+          <div style="margin-top: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span style="font-family: var(--font-mono); font-size: 0.72rem; color: #8B5CF6; letter-spacing: 1px;">PACKET TRACER SIMULATION CONSOLE</span>
+              <span style="font-family: var(--font-mono); font-size: 0.68rem; color: #64748B;">PROTOCOL: ICMP / 802.1Q / IP</span>
+            </div>
+            <div id="network-tracer-log" style="background: #070A12; border: 1px solid rgba(0, 229, 255, 0.2); border-radius: 4px; padding: 10px 14px; min-height: 48px; max-height: 110px; overflow-y: auto;">
+              <div style="color: #64748B; font-family: var(--font-mono); font-size: 0.75rem;">> Cisco network simulation ready. Click 'TRANSMIT PACKET' to trace a cross-VLAN packet route.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         LEARNING JOURNEY & TIMELINE
+         ========================================================================== -->
+    <section id="journey">
+      <div class="nexus-container">
+        <div class="section-header">
+          <div class="section-tag">TIMELINE & PROGRESSION</div>
+          <h2 class="section-title">Academic & Engineering Journey</h2>
+          <p class="section-subtitle">
+            Milestones in programming, student organizations, embedded builds, and cybersecurity.
+          </p>
+        </div>
+
+        <div id="timeline-container" class="timeline-container"></div>
+        <p class="carousel-hint mobile-carousel-hint" aria-hidden="true">SWIPE THROUGH THE TIMELINE <span>→</span></p>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         CERTIFICATES & ACADEMIC RECOGNITION GALLERY
+         ========================================================================== -->
+    <section id="certificates">
+      <div class="nexus-container">
+        <div class="section-header">
+          <div class="section-tag">CREDENTIALS & RECOGNITION</div>
+          <h2 class="section-title">Credentials, Participation & Academic Journey</h2>
+          <p class="section-subtitle">
+            Verified certificates and student memberships. Select a credential to inspect it.
+          </p>
+        </div>
+
+        <div id="certificates-grid" class="certificates-grid"></div>
+        <p class="carousel-hint" aria-hidden="true">SWIPE TO EXPLORE CREDENTIALS <span>→</span></p>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         CONTACT SECTION: ESTABLISH CONNECTION
+         ========================================================================== -->
+    <section id="contact">
+      <div class="nexus-container">
+        <div class="section-header">
+          <div class="section-tag">ESTABLISH UPLINK</div>
+          <h2 class="section-title">Have an Idea Worth Building?</h2>
+          <p class="section-subtitle">
+            Open to academic collaborations, technical projects, and opportunities to learn together.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Left: Direct Info & Social Pills -->
+          <div class="contact-info-card">
+            <div>
+              <span class="font-mono" style="font-size: 0.72rem; color: #8B5CF6; letter-spacing: 1px;">DIRECT INBOX</span>
+              <h3 style="font-size: 1.3rem; margin-top: 4px; margin-bottom: 12px;">Electronic Transmission</h3>
+              <p style="font-size: 0.88rem; color: #94A3B8; line-height: 1.6;">
+                Reach me directly for academic collaborations, project development, or networking discussions.
+              </p>
+            </div>
+
+            <!-- Email Copy Box -->
+            <div class="contact-email-box">
+              <span class="contact-email-text">luckyevangelista04@gmail.com</span>
+              <button id="btn-copy-email" class="btn-cyber btn-primary btn-sm" title="Copy email address to clipboard">
+                COPY EMAIL
+              </button>
+            </div>
+
+            <div>
+              <span class="font-mono" style="font-size: 0.72rem; color: #64748B; letter-spacing: 1px; display: block; margin-bottom: 12px;">OFFICIAL SOCIAL PROFILES</span>
+              <div id="contact-social-pills" class="contact-social-pills"></div>
+            </div>
+          </div>
+
+          <!-- Right: Interactive Form -->
+          <div class="contact-form-card">
+            <h3 style="font-size: 1.25rem; margin-bottom: 6px;">Transmit Direct Message</h3>
+            <p style="font-size: 0.85rem; color: #94A3B8; margin-bottom: 24px;">Send a message directly via your email client or browser.</p>
+
+            <form id="contact-nexus-form">
+              <div class="form-group">
+                <label for="form-name" class="form-label">IDENTIFIER / YOUR NAME</label>
+                <input type="text" id="form-name" class="form-input" placeholder="e.g. Jane Doe" required />
+              </div>
+              <div class="form-group">
+                <label for="form-email" class="form-label">YOUR EMAIL ADDRESS</label>
+                <input type="email" id="form-email" class="form-input" placeholder="jane@example.com" required />
+              </div>
+              <div class="form-group">
+                <label for="form-subject" class="form-label">SUBJECT</label>
+                <input type="text" id="form-subject" class="form-input" placeholder="Project Inquiry / Collaboration" required />
+              </div>
+              <div class="form-group">
+                <label for="form-message" class="form-label">MESSAGE</label>
+                <textarea id="form-message" rows="4" class="form-textarea" placeholder="Detail your thoughts or project requirements..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn-cyber btn-primary" style="width: 100%;">
+                TRANSMIT MESSAGE
+              </button>
+              <div id="form-status-msg" style="margin-top: 16px; display: none;"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER: SYSTEM TERMINATION
+       ========================================================================== -->
+  <footer class="nexus-footer">
+    <div class="nexus-container">
+      <div class="footer-top">
+        <div>
+          <div style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; letter-spacing: 1px;">
+            LUCKZ<span style="color: #00E5FF;">DEV</span> | NEXUS PROTOCOL
+          </div>
+          <p style="font-size: 0.85rem; color: #94A3B8; margin-top: 4px;">
+            "Engineered with curiosity. Designed with purpose."
+          </p>
+        </div>
+
+        <div style="display: flex; gap: 14px; align-items: center;">
+          <a href="#home" id="btn-back-to-top" class="btn-cyber btn-secondary btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="19" x2="12" y2="5"></line>
+              <polyline points="5 12 12 5 19 12"></polyline>
+            </svg>
+            BACK TO TOP
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; <span id="footer-copyright-year">2026</span> Lucky Arlie T. Evangelista (LuckzDev). All rights reserved.
+        </div>
+        <div style="color: #00E5FF;">
+          Thank you for visiting. Keep building what comes next.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODAL 1: PROJECT DETAIL MODAL
+       ========================================================================== -->
+  <div id="project-detail-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-project-title">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span id="modal-project-tag" class="modal-tag">ACADEMIC PROJECT DETAILS</span>
+          <h3 id="modal-project-title" class="modal-title">Project Title</h3>
+        </div>
+        <button class="modal-close-btn" aria-label="Close project modal">&times;</button>
+      </div>
+      <div id="modal-project-content" class="modal-content-scroll"></div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 2: CERTIFICATE LIGHTBOX MODAL
+       ========================================================================== -->
+  <div id="certificate-lightbox-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="lightbox-cert-title">
+    <div class="modal-container cert-lightbox-container">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span id="lightbox-cert-tag" class="modal-tag">VERIFIED CREDENTIAL</span>
+          <h3 id="lightbox-cert-title" class="modal-title">Certificate Inspection</h3>
+        </div>
+        <button class="modal-close-btn" aria-label="Close document lightbox">&times;</button>
+      </div>
+      <div class="cert-lightbox-img-wrap">
+        <img id="lightbox-cert-image" alt="Verified Academic Certificate" class="cert-lightbox-img" />
+      </div>
+      <div id="lightbox-cert-details" class="modal-content-scroll"></div>
+    </div>
+  </div>
+
+  <!-- Scroll Depth Telemetry HUD Widget -->
+  <div id="scroll-depth-hud" class="scroll-depth-hud" aria-label="Scroll progress and connection status">
+    <span class="status-beacon" style="width: 5px; height: 5px;"></span>
+    <span>SCROLL PROGRESS: <strong id="hud-scroll-percent" style="color: #39FF88;">0%</strong></span>
+    <span>ACTIVE NODE: <strong id="hud-active-section">HOME</strong></span>
+    <span class="hud-connection-status">CONNECTION SECURE</span>
+  </div>
+
+  <!-- Core JavaScript Application Bundle -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

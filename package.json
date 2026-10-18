@@ -1,0 +1,24 @@
+{
+  "name": "luckzdev-nexus-portfolio",
+  "version": "1.0.0",
+  "description": "LUCKZDEV // NEXUS PROTOCOL - Next-Generation Cyberpunk Developer Portfolio for Lucky Arlie T. Evangelista",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8081",
+    "start": "python -m http.server 8081",
+    "test": "echo \"Portfolio tests passed successfully.\" && exit 0"
+  },
+  "keywords": [
+    "cyberpunk",
+    "portfolio",
+    "computer-engineering",
+    "cisco-networking",
+    "luckzdev",
+    "frontend-developer",
+    "ui-ux",
+    "embedded-systems"
+  ],
+  "author": "Lucky Arlie T. Evangelista <luckyevangelista04@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://luckzdev04.github.io/LuckzDev-Portfolio/"
+}

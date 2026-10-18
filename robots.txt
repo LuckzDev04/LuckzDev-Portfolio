@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://luckzdev04.github.io/LuckzDev-Portfolio/sitemap.xml
