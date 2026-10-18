@@ -8,6 +8,7 @@ import { activateBootSound } from './sound.js';
 
 const BOOT_ANNOUNCEMENT = "Initializing portfolio systems. Loading project database. Establishing secure network simulation. Systems ready.";
 const AI_GREETING_SCRIPT = "LuckzDev AI online. Welcome to the digital command center of Lucky Arlie T. Evangelista — LuckzDev. Computer Engineering student at ICCT Colleges, frontend developer, and aspiring network engineer. Systems online. All firewalls and simulation protocols synchronized. Behind every line of code lies an idea waiting to become reality. Explore the project blueprints, inspect the verified academic credentials, and examine the intelligence behind the network. Standing by for command.";
+const MASCULINE_PITCH = 0.4;
 
 let isSpeechAvailable = 'speechSynthesis' in window;
 let isAudioEnabled = false;
@@ -26,6 +27,8 @@ let autoGreetingStarted = false;
 let greetingFallbackBound = false;
 let greetingFallbackHandler = null;
 let greetingPlayedManually = false;
+let pendingVoiceUtterance = null;
+let pendingVoiceTimer = 0;
 
 export function initAudioSystem() {
   subtitleBar = document.getElementById('ai-voice-subtitles');
@@ -34,9 +37,7 @@ export function initAudioSystem() {
 
   // Load available voices
   if (isSpeechAvailable) {
-    window.speechSynthesis.onvoiceschanged = () => {
-      // Voices ready
-    };
+    window.speechSynthesis.onvoiceschanged = speakPendingUtterance;
   }
 
   // Bind audio control buttons
@@ -77,19 +78,13 @@ export function playAIVoiceGreeting(isAutomatic = false) {
   }
 
   // Cancel any ongoing speech
+  cancelPendingUtterance();
   window.speechSynthesis.cancel();
 
   const utterance = new SpeechSynthesisUtterance(AI_GREETING_SCRIPT);
   currentUtterance = utterance;
 
-  const preferredVoice = getPreferredEnglishVoice();
-
-  if (preferredVoice) {
-    utterance.voice = preferredVoice;
-  }
-
-  // Deep, futuristic synthetic delivery
-  utterance.pitch = 0.68;
+  utterance.pitch = MASCULINE_PITCH;
   utterance.rate = 0.92;
   let hasStarted = false;
   let autoplayFallbackTimer = 0;
@@ -124,7 +119,7 @@ export function playAIVoiceGreeting(isAutomatic = false) {
     if (isAutomatic && !autoGreetingStarted) armAutomaticGreetingFallback();
   };
 
-  window.speechSynthesis.speak(utterance);
+  speakWithPreferredVoice(utterance);
   if (isAutomatic) {
     autoplayFallbackTimer = window.setTimeout(() => {
       if (!hasStarted && !autoGreetingStarted) armAutomaticGreetingFallback();
@@ -135,6 +130,7 @@ export function playAIVoiceGreeting(isAutomatic = false) {
 export function stopAIVoiceGreeting() {
   hideVoicePrompt();
   if (isSpeechAvailable) {
+    cancelPendingUtterance();
     window.speechSynthesis.cancel();
   }
   isAudioEnabled = false;
@@ -155,6 +151,7 @@ export function toggleVoiceGreeting() {
 function playBootAnnouncement() {
   if (!isSpeechAvailable) return;
 
+  cancelPendingUtterance();
   window.speechSynthesis.cancel();
   bootVoicePending = true;
   bootVoiceStarted = false;
@@ -189,7 +186,7 @@ function playBootAnnouncement() {
   };
 
   currentUtterance = utterance;
-  window.speechSynthesis.speak(utterance);
+  speakWithPreferredVoice(utterance);
   bootVoiceFallbackTimer = window.setTimeout(() => {
     if (!bootVoiceStarted) armBootVoiceFallback();
   }, 1800);
@@ -257,22 +254,52 @@ function hideVoicePrompt() {
 
 function createRobotUtterance(text, rate, pitch) {
   const utterance = new SpeechSynthesisUtterance(text);
-  const voice = getPreferredEnglishVoice();
-
-  if (voice) utterance.voice = voice;
   utterance.rate = rate;
-  utterance.pitch = Math.min(pitch, 0.68);
+  utterance.pitch = Math.min(pitch, MASCULINE_PITCH);
   return utterance;
 }
 
 function getPreferredEnglishVoice() {
   const voices = window.speechSynthesis.getVoices();
   const englishVoices = voices.filter(voice => voice.lang.startsWith('en'));
-  const maleVoicePattern = /\b(male|david|mark|guy|daniel|james|fred|ralph|tom|peter)\b/i;
+  const maleVoicePattern = /\b(male|david|mark|guy|daniel|james|fred|ralph|tom|peter|alex|oliver|aaron|liam|george|ryan|matthew|arthur|thomas)\b/i;
+  const femaleVoicePattern = /\b(female|zira|samantha|victoria|karen|moira|tessa|fiona|susan|allison|ava|jenny|aria|libby|hazel|serena)\b/i;
 
   return englishVoices.find(voice => maleVoicePattern.test(voice.name))
+    || englishVoices.find(voice => !femaleVoicePattern.test(voice.name))
     || englishVoices[0]
     || voices[0];
+}
+
+function speakWithPreferredVoice(utterance) {
+  cancelPendingUtterance();
+  const voices = window.speechSynthesis.getVoices();
+  if (voices.length) {
+    const voice = getPreferredEnglishVoice();
+    if (voice) utterance.voice = voice;
+    window.speechSynthesis.speak(utterance);
+    return;
+  }
+
+  pendingVoiceUtterance = utterance;
+  pendingVoiceTimer = window.setTimeout(() => speakPendingUtterance(true), 1500);
+}
+
+function speakPendingUtterance(allowDefaultVoice = false) {
+  if (!pendingVoiceUtterance) return;
+  if (!allowDefaultVoice && !window.speechSynthesis.getVoices().length) return;
+
+  const utterance = pendingVoiceUtterance;
+  cancelPendingUtterance();
+  const voice = getPreferredEnglishVoice();
+  if (voice) utterance.voice = voice;
+  window.speechSynthesis.speak(utterance);
+}
+
+function cancelPendingUtterance() {
+  clearTimeout(pendingVoiceTimer);
+  pendingVoiceTimer = 0;
+  pendingVoiceUtterance = null;
 }
 
 function startWaveAnimation() {
