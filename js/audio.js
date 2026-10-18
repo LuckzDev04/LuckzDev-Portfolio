@@ -1,18 +1,18 @@
 /**
  * LUCKZDEV // NEXUS PROTOCOL - AI VOICE INTERFACE ENGINE
- * Web Speech API synthesizer with futuristic cadence and audio waveforms.
- * Uses browser speech synthesis for the boot announcement and AI greeting.
+ * Recorded narration for a consistent voice across browsers and devices.
  */
 
 import { activateBootSound } from './sound.js';
 
 const BOOT_ANNOUNCEMENT = "Initializing portfolio systems. Loading project database. Establishing secure network simulation. Systems ready.";
 const AI_GREETING_SCRIPT = "LuckzDev AI online. Welcome to the digital command center of Lucky Arlie T. Evangelista — LuckzDev. Computer Engineering student at ICCT Colleges, frontend developer, and aspiring network engineer. Systems online. All firewalls and simulation protocols synchronized. Behind every line of code lies an idea waiting to become reality. Explore the project blueprints, inspect the verified academic credentials, and examine the intelligence behind the network. Standing by for command.";
-const MASCULINE_PITCH = 0.4;
+const bootAnnouncementAudio = new Audio(new URL('../assets/audio/boot-announcement.wav', import.meta.url));
+const aiGreetingAudio = new Audio(new URL('../assets/audio/ai-greeting.wav', import.meta.url));
+bootAnnouncementAudio.preload = 'auto';
+aiGreetingAudio.preload = 'auto';
 
-let isSpeechAvailable = 'speechSynthesis' in window;
 let isAudioEnabled = false;
-let currentUtterance = null;
 let subtitleBar = null;
 let voicePrompt = null;
 let waveBars = [];
@@ -27,18 +27,11 @@ let autoGreetingStarted = false;
 let greetingFallbackBound = false;
 let greetingFallbackHandler = null;
 let greetingPlayedManually = false;
-let pendingVoiceUtterance = null;
-let pendingVoiceTimer = 0;
 
 export function initAudioSystem() {
   subtitleBar = document.getElementById('ai-voice-subtitles');
   voicePrompt = document.getElementById('ai-voice-prompt');
   waveBars = document.querySelectorAll('.wave-bar');
-
-  // Load available voices
-  if (isSpeechAvailable) {
-    window.speechSynthesis.onvoiceschanged = speakPendingUtterance;
-  }
 
   // Bind audio control buttons
   const toggleBtn = document.getElementById('btn-nav-audio');
@@ -66,30 +59,23 @@ export function initAudioSystem() {
 
 export function playAIVoiceGreeting(isAutomatic = false) {
   hideVoicePrompt();
-  if (!isSpeechAvailable) {
-    showSubtitleText("Voice interface not supported in this browser. Visual mode active.", 3000);
-    return;
-  }
-
   if (!isAutomatic) {
     greetingPlayedManually = true;
     autoGreetingAttempted = true;
     autoGreetingStarted = true;
   }
 
-  // Cancel any ongoing speech
-  cancelPendingUtterance();
-  window.speechSynthesis.cancel();
-
-  const utterance = new SpeechSynthesisUtterance(AI_GREETING_SCRIPT);
-  currentUtterance = utterance;
-
-  utterance.pitch = MASCULINE_PITCH;
-  utterance.rate = 0.92;
   let hasStarted = false;
   let autoplayFallbackTimer = 0;
+  bootAnnouncementAudio.pause();
+  bootAnnouncementAudio.currentTime = 0;
+  clearBootVoiceFallback();
+  bootVoicePlaying = false;
+  bootVoicePending = false;
+  aiGreetingAudio.pause();
+  aiGreetingAudio.currentTime = 0;
 
-  utterance.onstart = () => {
+  aiGreetingAudio.onplay = () => {
     hasStarted = true;
     clearTimeout(autoplayFallbackTimer);
     isAudioEnabled = true;
@@ -102,7 +88,7 @@ export function playAIVoiceGreeting(isAutomatic = false) {
     updateAudioButtonState(true);
   };
 
-  utterance.onend = () => {
+  aiGreetingAudio.onended = () => {
     clearTimeout(autoplayFallbackTimer);
     isAudioEnabled = false;
     stopWaveAnimation();
@@ -110,16 +96,30 @@ export function playAIVoiceGreeting(isAutomatic = false) {
     updateAudioButtonState(false);
   };
 
-  utterance.onerror = () => {
+  aiGreetingAudio.onerror = () => {
     clearTimeout(autoplayFallbackTimer);
     isAudioEnabled = false;
     stopWaveAnimation();
     hideSubtitleText();
     updateAudioButtonState(false);
+    console.error('Unable to load or play the recorded AI voice greeting.', aiGreetingAudio.error);
     if (isAutomatic && !autoGreetingStarted) armAutomaticGreetingFallback();
   };
 
-  speakWithPreferredVoice(utterance);
+  aiGreetingAudio.currentTime = 0;
+  aiGreetingAudio.play().catch(error => {
+    isAudioEnabled = false;
+    stopWaveAnimation();
+    hideSubtitleText();
+    updateAudioButtonState(false);
+    if (error.name === 'NotAllowedError' && isAutomatic) {
+      armAutomaticGreetingFallback();
+      return;
+    }
+    console.error('Unable to play the recorded AI voice greeting.', error);
+    if (isAutomatic && !autoGreetingStarted) armAutomaticGreetingFallback();
+  });
+
   if (isAutomatic) {
     autoplayFallbackTimer = window.setTimeout(() => {
       if (!hasStarted && !autoGreetingStarted) armAutomaticGreetingFallback();
@@ -129,10 +129,8 @@ export function playAIVoiceGreeting(isAutomatic = false) {
 
 export function stopAIVoiceGreeting() {
   hideVoicePrompt();
-  if (isSpeechAvailable) {
-    cancelPendingUtterance();
-    window.speechSynthesis.cancel();
-  }
+  aiGreetingAudio.pause();
+  aiGreetingAudio.currentTime = 0;
   isAudioEnabled = false;
   stopWaveAnimation();
   hideSubtitleText();
@@ -149,14 +147,13 @@ export function toggleVoiceGreeting() {
 }
 
 function playBootAnnouncement() {
-  if (!isSpeechAvailable) return;
-
-  cancelPendingUtterance();
-  window.speechSynthesis.cancel();
+  aiGreetingAudio.pause();
+  aiGreetingAudio.currentTime = 0;
+  bootAnnouncementAudio.pause();
+  bootAnnouncementAudio.currentTime = 0;
   bootVoicePending = true;
   bootVoiceStarted = false;
-  const utterance = createRobotUtterance(BOOT_ANNOUNCEMENT, 0.94, 0.74);
-  utterance.onstart = () => {
+  bootAnnouncementAudio.onplay = () => {
     bootVoiceStarted = true;
     bootVoicePending = false;
     clearBootVoiceFallback();
@@ -164,16 +161,25 @@ function playBootAnnouncement() {
     startWaveAnimation();
     showSubtitleText(BOOT_ANNOUNCEMENT, 0);
   };
-  utterance.onend = () => {
+  bootAnnouncementAudio.onended = () => {
     bootVoicePlaying = false;
     bootVoicePending = false;
     stopWaveAnimation();
     hideSubtitleText();
     if (autoGreetingRequested) startAutomaticGreeting();
   };
-  utterance.onerror = event => {
+  bootAnnouncementAudio.onerror = () => {
     bootVoicePlaying = false;
-    if (event.error === 'not-allowed' && !bootVoiceStarted) {
+    bootVoicePending = false;
+    clearBootVoiceFallback();
+    stopWaveAnimation();
+    hideSubtitleText();
+    console.error('Unable to load or play the recorded boot announcement.', bootAnnouncementAudio.error);
+    if (autoGreetingRequested) startAutomaticGreeting();
+  };
+
+  bootAnnouncementAudio.play().catch(error => {
+    if (error.name === 'NotAllowedError' && !bootVoiceStarted) {
       bootVoicePending = true;
       armBootVoiceFallback();
       return;
@@ -182,11 +188,10 @@ function playBootAnnouncement() {
     clearBootVoiceFallback();
     stopWaveAnimation();
     hideSubtitleText();
+    console.error('Unable to play the recorded boot announcement.', error);
     if (autoGreetingRequested) startAutomaticGreeting();
-  };
+  });
 
-  currentUtterance = utterance;
-  speakWithPreferredVoice(utterance);
   bootVoiceFallbackTimer = window.setTimeout(() => {
     if (!bootVoiceStarted) armBootVoiceFallback();
   }, 1800);
@@ -250,56 +255,6 @@ function showVoicePrompt() {
 function hideVoicePrompt() {
   if (!voicePrompt) voicePrompt = document.getElementById('ai-voice-prompt');
   voicePrompt?.classList.add('hidden');
-}
-
-function createRobotUtterance(text, rate, pitch) {
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.rate = rate;
-  utterance.pitch = Math.min(pitch, MASCULINE_PITCH);
-  return utterance;
-}
-
-function getPreferredEnglishVoice() {
-  const voices = window.speechSynthesis.getVoices();
-  const englishVoices = voices.filter(voice => voice.lang.startsWith('en'));
-  const maleVoicePattern = /\b(male|david|mark|guy|daniel|james|fred|ralph|tom|peter|alex|oliver|aaron|liam|george|ryan|matthew|arthur|thomas)\b/i;
-  const femaleVoicePattern = /\b(female|zira|samantha|victoria|karen|moira|tessa|fiona|susan|allison|ava|jenny|aria|libby|hazel|serena)\b/i;
-
-  return englishVoices.find(voice => maleVoicePattern.test(voice.name))
-    || englishVoices.find(voice => !femaleVoicePattern.test(voice.name))
-    || englishVoices[0]
-    || voices[0];
-}
-
-function speakWithPreferredVoice(utterance) {
-  cancelPendingUtterance();
-  const voices = window.speechSynthesis.getVoices();
-  if (voices.length) {
-    const voice = getPreferredEnglishVoice();
-    if (voice) utterance.voice = voice;
-    window.speechSynthesis.speak(utterance);
-    return;
-  }
-
-  pendingVoiceUtterance = utterance;
-  pendingVoiceTimer = window.setTimeout(() => speakPendingUtterance(true), 1500);
-}
-
-function speakPendingUtterance(allowDefaultVoice = false) {
-  if (!pendingVoiceUtterance) return;
-  if (!allowDefaultVoice && !window.speechSynthesis.getVoices().length) return;
-
-  const utterance = pendingVoiceUtterance;
-  cancelPendingUtterance();
-  const voice = getPreferredEnglishVoice();
-  if (voice) utterance.voice = voice;
-  window.speechSynthesis.speak(utterance);
-}
-
-function cancelPendingUtterance() {
-  clearTimeout(pendingVoiceTimer);
-  pendingVoiceTimer = 0;
-  pendingVoiceUtterance = null;
 }
 
 function startWaveAnimation() {

@@ -49,13 +49,13 @@ The design system adheres to a disciplined, high-contrast cyberpunk color palett
 
 ### 1. Cinematic System Boot Experience
 - **Terminal Typewriter:** Displays initialization messages, kernel load simulations, and developer profile loading.
-- **Robot Voice Initialization:** Announces system initialization and network setup using the browser's speech synthesizer.
+- **Robot Voice Initialization:** Plays a recorded male-voice announcement for a consistent sound across devices.
 - **Hologram Avatar Presentation:** Displays an abstract anonymous programmer silhouette with scanning cyan lasers and audio waveform bars.
 - **Identity Reveal Transition:** Scanlines sweep across the frame, glitching the anonymous silhouette into Lucky's real verified formal portrait.
 - **Non-blocking & Fast:** 1-click **[SKIP INTRO]** enters the main portfolio instantly.
 
 ### 2. AI Voice and Cyber Soundscape
-- Built using the native **Web Speech API**.
+- Uses recorded male-voice audio clips instead of browser text-to-speech, so the voice stays consistent across devices.
 - Automatically plays the one-time LUCKZDEV AI greeting after initialization, then stops; visitors can replay or stop it from the navigation control.
 - The supplied HUD music theme and procedural interface sound effects default to on and share a navigation mute toggle.
 - Browsers may block autoplay; the startup tone and theme start on the visitor's first interaction when required by browser policy. The boot control explicitly enables audio and replays the initialization announcement.
@@ -110,6 +110,10 @@ CyberpunkLuckzwebport/
 │   └── workflows/
 │       └── deploy.yml            # Automated GitHub Pages CI/CD workflow
 ├── assets/
+│   ├── audio/
+│   │   ├── ai-greeting.wav        # Recorded male-voice AI greeting
+│   │   ├── boot-announcement.wav  # Recorded male-voice boot announcement
+│   │   └── hud-ambient-theme.mp3  # Ambient portfolio theme
 │   └── images/
 │       ├── certificates/         # High-resolution certificate renders (8 Authentic Records)
 │       │   ├── safer-internet-day-2026.png
@@ -131,7 +135,7 @@ CyberpunkLuckzwebport/
 │   └── style.css                 # Cyberpunk design system, responsive styles & animations
 ├── js/
 │   ├── app.js                    # Core application orchestrator & modal controllers
-│   ├── audio.js                  # Web Speech API AI voice synthesizer
+│   ├── audio.js                  # Recorded AI voice playback and sound controls
 │   ├── cursor.js                 # Custom interactive reactive cursor
 │   ├── data.js                   # Central structured data store
 │   ├── network.js                # Cisco network topology simulation engine
